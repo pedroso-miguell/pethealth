@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, Alert, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function Cadastro() {
   const router = useRouter();
 
   const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [gender, setGender] = useState('');
 
-  const [open, setOpen] = useState(false);
 
   function BtnCadastrar() {
     if (password !== confirmPassword) {
@@ -25,187 +22,125 @@ export default function Cadastro() {
     }
   }
 
-  function handleGenderSelection(selectedGender) {
-    setGender(selectedGender);
-  }
+  const handleLoginGoogle = () => {
+    // Lógica para login com Google aqui
+    console.log('Login com Google');
+  };
 
   return (
-    <ScrollView>
-    <View style={styles.container}>
-      <View style={styles.introducao}>
-        <Text style={styles.descricao}>Cadastre-se</Text>
-      </View>
-
-      <Image
-      source={require('../imgs/Gzao.png')}
-      style={styles.logo}
-    />
-
-      <View style={styles.info}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Image source={require('../imgs/logoroxa.png')} style={styles.logo} />
+        <Text style={styles.title}>Cadastrar-se</Text>
         <TextInput
           style={styles.input}
           placeholder="Nome"
-          placeholderTextColor="gray"
-          selectionColor="purple"
           value={name}
-          onChangeText={setName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Sobrenome"
-          placeholderTextColor="gray"
-          selectionColor="purple"
-          value={surname}
-          onChangeText={setSurname}
+          onChangeText={text => setNome(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Email"
           keyboardType="email-address"
-          placeholderTextColor="gray"
-          autoComplete="email"
-          autoCapitalize="none"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={text => setEmail(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Senha"
-          placeholderTextColor="gray"
-          autoCapitalize="none"
           secureTextEntry
           value={password}
-          onChangeText={setPassword}
+          onChangeText={text => setSenha(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Confirmar Senha"
-          placeholderTextColor="gray"
-          autoCapitalize="none"
           secureTextEntry
           value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          onChangeText={text => setConfirmarSenha(text)}
         />
+        <TouchableOpacity style={styles.button} onPress={BtnCadastrar}>
+          <Text style={styles.buttonText}>Cadastrar</Text>
+        </TouchableOpacity>
 
-        <Text style={styles.texto}>
-          Gênero
-        </Text>
-
-        <View style={styles.checkboxContainer}>
-          <TouchableOpacity
-            style={[styles.checkbox, gender === 'masculino' ? styles.checked : null]}
-            onPress={() => handleGenderSelection('masculino')}
-          >
-            <Ionicons name="man" size={24} color={gender === 'masculino' ? 'white' : 'black'} />
-            <Text style={[styles.checkboxText, gender === 'masculino' ? { color: 'white' } : null]}>Masculino</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.checkbox, gender === 'feminino' ? styles.checked : null]}
-            onPress={() => handleGenderSelection('feminino')}
-          >
-            <Ionicons name="woman" size={24} color={gender === 'feminino' ? 'white' : 'black'} />
-            <Text style={[styles.checkboxText, gender === 'feminino' ? { color: 'white' } : null]}>Feminino</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.checkbox, gender === 'unisex' ? styles.checked : null]}
-            onPress={() => handleGenderSelection('unisex')}
-          >
-            <Ionicons name="transgender" size={24} color={gender === 'unisex' ? 'white' : 'black'} />
-            <Text style={[styles.checkboxText, gender === 'unisex' ? { color: 'white' } : null]}>Unisex</Text>
-          </TouchableOpacity>
+        <View style={styles.orContainer}>
+          <Text style={styles.orText}>OU</Text>
         </View>
 
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.buttonEntrar} onPress={BtnCadastrar}>
-            <Text style={styles.TxtBtnEntrar}>Cadastrar</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.googleButton} onPress={handleLoginGoogle}>
+          <FontAwesome name="google" size={24} color="white" />
+          <Text style={styles.googleButtonText}>Entrar com Google</Text>
+        </TouchableOpacity>
       </View>
-    </View>
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
-  introducao: {
-    marginLeft: 20,
-    marginTop: "50%",
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   logo: {
-    width: 80,
-    height: 93,
-    marginBottom: 20,
-    marginLeft: "70%",
-    marginTop: "50%",
-    position: "absolute",
+    width: 250,
+    height: 250,
+    resizeMode: 'contain',
   },
   input: {
-    borderColor: "black",
-    color: "black",
-    backgroundColor: "lightgray",
+    width: 320,
+    height: 50,
     borderWidth: 1,
+    borderColor: '#ccc',
     borderRadius: 5,
     paddingHorizontal: 10,
-    width: "90%",
+    marginBottom: 10,
+  },
+  button: {
+    width: 220,
     height: 50,
-    marginTop: 10,
-  },
-  info: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "35%",
-  },
-  descricao: {
-    fontSize: 40,
-    marginBottom: 10,
-    marginTop: "5%",
-  },
-  buttonContainer: {
-    width: "80%",
-    alignItems: "center",
-    marginTop: 10,
-  },
-  buttonEntrar: {
-    width: "100%",
-    backgroundColor: "#593C9D",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderRadius: 10,
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  TxtBtnEntrar: {
-    color: "white",
-    fontSize: 20,
-  },
-  texto: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: "gray",
+    backgroundColor: '#7E57C2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
     marginTop: 20,
   },
-  checkboxContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '90%',
-    marginTop: 10,
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  checkbox: {
+  orContainer: {
+    marginVertical: 20,
+  },
+  orText: {
+    fontSize: 18,
+    color: '#7E57C2',
+    fontWeight: 'bold',
+  },
+  googleButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
-    marginTop: 10,
-  },
-  checkboxText: {
-    marginLeft: 8,
-  },
-  checked: {
-    backgroundColor: '#593C9D',
-    padding: 10,
+    backgroundColor: '#DB4437',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 5,
+  },
+  googleButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    marginLeft: 10,
   },
 });

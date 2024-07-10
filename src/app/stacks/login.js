@@ -1,5 +1,6 @@
-import {StyleSheet, Text, View, TouchableOpacity, Image, TextInput} from "react-native";
+import {StyleSheet, Text, View, TouchableOpacity, Image, TextInput, ScrollView} from "react-native";
 import { Link, useRouter } from "expo-router";
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function Login() {
   const router = useRouter();
@@ -8,108 +9,127 @@ export default function Login() {
     router.push("/tabs/home");
   }
 
+  function navigateToCadastro() {
+    router.push('/stacks/cadastro');
+  }
+
   return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
     <View style={styles.container}>
-      <View style={styles.introducao}>
-        <Text style={styles.descricao}>Faça Login</Text>
+      <Image source={require('../imgs/logoroxa.png')} style={styles.logo} />
+      <Text style={styles.title}>Fazer Login</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        keyboardType="email-address"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Senha"
+        secureTextEntry
+      />
+      <TouchableOpacity style={styles.button} onPress={BtnLogin}>
+        <Text style={styles.buttonText}>Entrar</Text>
+      </TouchableOpacity>
+
+      <View style={styles.orContainer}>
+        <Text style={styles.orText}>OU</Text>
       </View>
 
-      <Image
-      source={require('../imgs/Gzao.png')}
-      style={styles.logo}
-    />
+      {/* Botão de Login com Google */}
+      <TouchableOpacity style={styles.googleButton}>
+        <FontAwesome name="google" size={24} color="white" />
+        <Text style={styles.googleButtonText}>Entrar com Google</Text>
+      </TouchableOpacity>
 
-     
-      <View style={styles.info}>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-        />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Senha"
-          autoCapitalize="none"
-          secureTextEntry
-        />
-
-      
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.buttonEntrar} onPress={BtnLogin}>
-            <Text style={styles.TxtBtnEntrar}>Entrar</Text>
-          </TouchableOpacity>
-
-          <Link href="/stacks/redefinir" style={styles.link}>
-            Esqueceu a Senha
-          </Link>
-          </View>
-      </View>
+      <TouchableOpacity onPress={navigateToCadastro}>
+          <Text style={styles.titulo}>Ainda não possui conta?</Text>
+          <Text style={styles.link}>Cadastre-se aqui!</Text>
+        </TouchableOpacity>
     </View>
+  </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
-  introducao: {
-    marginLeft: 20,
-    marginTop: "50%",
+  container: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   logo: {
-    width: 80,
-    height: 93,
-    marginBottom: 20,
-    marginLeft: "70%",
-    marginTop: "50%",
-    position: "absolute",
+    width: 250,
+    height: 250,
+    resizeMode: 'contain',
   },
   input: {
-    borderColor: "black",
-    color: "black",
-    backgroundColor: "lightgray",
+    width: 320,
+    height: 50,
     borderWidth: 1,
+    borderColor: '#ccc',
     borderRadius: 5,
     paddingHorizontal: 10,
-    width: "90%",
+    marginBottom: 10,
+  },
+  button: {
+    width: 220,
     height: 50,
-    marginTop: 10,
+    backgroundColor: '#7E57C2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    marginTop: 20,
   },
-  info: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "45%",
-  },
-  descricao: {
-    fontSize: 40,
-    marginBottom: 10,
-    marginTop: "5%",
-  },
-  buttonContainer: {
-    width: "80%",
-    alignItems: "center",
-    marginTop: 10,
-  },
-  buttonEntrar: {
-    width: "100%",
-    backgroundColor: "#593C9D",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderRadius: 10,
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  TxtBtnEntrar: {
-    color: "white",
-    fontSize: 20,
+  titulo: {
+    fontSize: 18,
+    marginTop: 20,
   },
   link: {
+    color: '#7E57C2',
+    textDecorationLine: 'underline',
+    marginLeft: 37,
+    marginTop: 5,
+    fontSize: 16,
+  },
+  buttonText: {
+    color: '#fff',
     fontSize: 18,
-    color: "gray",
-    marginTop: 10,
+    fontWeight: 'bold',
+  },
+  googleButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#DB4437',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  googleButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    marginLeft: 10,
+  },
+  orContainer: {
+    marginVertical: 20,
+  },
+  orText: {
+    fontSize: 18,
+    color: '#7E57C2',
+    fontWeight: 'bold',
+  },
+  cadastroText: {
+    marginTop: 20,
+    color: '#7E57C2',
   },
 });

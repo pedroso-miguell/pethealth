@@ -15,27 +15,15 @@ export default function Inicial() {
 
   return (
     <View style={styles.container}>
-
-    <View style={styles.introducao}>
-      <Text style={styles.title}>Olá!</Text>
-      <Text style={styles.descricao}>Bem-vindo a GoDress</Text>
-      </View>
-
-      <Image
-      source={require('../imgs/Gzao.png')}
-      style={styles.logo}
-    />
-      
-      <View style={styles.botoes}>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttonLogin} onPress={BtnLogin}>
-          <Text style={styles.TxtBtnLogin}>Faça Login</Text>
+      <Image source={require('../imgs/logo.png')} style={styles.logo} />
+      <View style={styles.miniContainer}>
+        <Image source={require('../imgs/gato.png')} style={styles.gato} />
+        <Text style={styles.titulo}>Amor e cuidado</Text>
+        <Text style={styles.titulo2}>que seu pet merece!</Text>
+        <TouchableOpacity style={styles.button} onPress={BtnCadastro}>
+          <Text style={styles.buttonText}>Cadastre-se</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.buttonCadastro} onPress={BtnCadastro}>
-          <Text style={styles.TxtBtnCadastro}>Cadastre-se</Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={styles.titulo3}>Já possui conta? <Text>Entrar</Text></Text>
       </View>
     </View>
   );
@@ -44,63 +32,65 @@ export default function Inicial() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-  },
-  introducao: {
-    marginLeft:20,
-    marginTop: '50%',
-  },
-  botoes: {
-    alignItems: 'center',
+    backgroundColor: '#7E57C2',
     justifyContent: 'center',
-    marginTop: '45%',
+    alignItems: 'center',
   },
   logo: {
-    width: 80, 
-    height: 93, 
+    position: 'absolute',
+    top: '50%',
+    transform: [{ translateY: -250 }], // Ajuste conforme necessário
+    width: 250,
+    height: 250,
+    resizeMode: 'contain',
+  },
+  miniContainer: {
+    marginTop: 520,
+    height: 320,
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+  },
+  gato: {
+    position: 'absolute',
+    top: -85,
+    right: 35,
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
+  },
+  titulo: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  titulo2: {
+    fontWeight: 'bold',
+    fontSize: 24,
     marginBottom: 20,
-    marginLeft: '70%',
-    marginTop: '50%',
-    position: 'absolute'
   },
-  title: {
-    fontSize: 60,
-    fontWeight: "bold",
-  },
-  descricao: {
+  titulo3: {
     fontSize: 18,
-    marginBottom: 10,
-    color: "gray",
+    marginTop: 20,
   },
-  buttonContainer: {
-    width: "80%",
-    alignItems: "center",
-    marginTop: 10,
+  link: {
+    color: '#7E57C2',
+    textDecorationLine: 'underline',
   },
-  buttonLogin: {
-    width: "100%",
-    backgroundColor: "#593C9D",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+  button: {
+    backgroundColor: '#7E57C2',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
     borderRadius: 10,
-    alignItems: 'center',
-    marginBottom: 10,
+    marginTop: 20,
   },
-  TxtBtnLogin: {
-    color: "white",
+  buttonText: {
+    color: '#fff',
     fontSize: 20,
+    textAlign: 'center',
   },
-  buttonCadastro: {
-    width: "100%",
-    backgroundColor: "#593C9D",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  TxtBtnCadastro: {
-    color: "white",
-    fontSize: 20,
-  },
-
 });

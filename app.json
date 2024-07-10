@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "GoDress",
+    "name": "PetHealth",
     "entryPoint": "app/inicial.js",
-    "slug": "GoDress",
+    "slug": "PetHealth",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/Logo.png",
+    "icon": "./src/assets/splash.png",
     "userInterfaceStyle": "light",
-    "scheme": "GoDress",
+    "scheme": "PetHealth",
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",
@@ -23,7 +23,7 @@
       }
     },
     "web": {
-      "favicon": "./src/assets/Logo.png"
+      "favicon": "./src/assets/splash.png"
     },
     "plugins": [
       "expo-router"
