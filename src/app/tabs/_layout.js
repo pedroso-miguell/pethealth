@@ -14,10 +14,10 @@ export default function TabsLayout() {
           const iconSize = 30; // Definindo um tamanho fixo para todos os ícones
           if (route.name === "home") {
             return <Ionicons name={focused ? "home" : "home-outline"} color={color} size={iconSize} />;
-          } else if (route.name === "criar") {
-            return <Ionicons name={focused ? "add-circle" : "add-circle-outline"} color={color} size={iconSize} />;
-          } else if (route.name === "favoritos") {
-            return <Ionicons name={focused ? "heart" : "heart-outline"} color={color} size={iconSize} />;
+          } else if (route.name === "calendario") {
+            return <Ionicons name={focused ? "calendar" : "calendar-outline"} color={color} size={iconSize} />;
+          } else if (route.name === "adote") {
+            return <Ionicons name={focused ? "paw" : "paw-outline"} color={color} size={iconSize} />;
           } else if (route.name === "perfil") {
             return <Ionicons name={focused ? "person" : "person-outline"} color={color} size={iconSize} />;
           }
@@ -29,23 +29,24 @@ export default function TabsLayout() {
         name="home"
         options={{
           title: "Home",
+          headerShown: false,
           headerShadowVisible: false,
           headerTitleStyle: { fontSize: 24, fontWeight: "bold" },
           headerTitleContainerStyle: { marginTop: 20, marginLeft: 30 },
         }}
       />
       <Tabs.Screen
-        name="criar"
+        name="calendario"
         options={{
-          title: "Criar",
+          title: "Calendário",
           headerTitleStyle: { fontSize: 24, fontWeight: "bold" },
           headerTitleContainerStyle: { marginTop: 20, marginLeft: 30 },
         }}
       />
       <Tabs.Screen
-        name="favoritos"
+        name="adote"
         options={{
-          title: "Favoritos",
+          title: "Adote",
           headerTitleStyle: { fontSize: 24, fontWeight: "bold" },
           headerTitleContainerStyle: { marginTop: 20, marginLeft: 30 },
         }}
