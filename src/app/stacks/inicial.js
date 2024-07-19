@@ -1,16 +1,23 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
-import { useRouter } from "expo-router";
-
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useFonts, Poppins_400Regular, Poppins_100Thin, Poppins_600SemiBold_Italic } from '@expo-google-fonts/poppins'
 
 export default function Inicial() {
+  const [fontLoaded] = useFonts({
+    Poppins_100Thin,
+    Poppins_600SemiBold_Italic,
+    Poppins_400Regular,
+  });
+
   const router = useRouter();
 
-  function BtnLogin() {
-    router.push("/stacks/login");
+  function BtnCadastro() {
+    router.push('/stacks/cadastro'); 
   }
 
-  function BtnCadastro() {
-    router.push("/stacks/cadastro");
+  function navigateToLogin() {
+    router.push('/stacks/login');
   }
 
   return (
@@ -23,7 +30,9 @@ export default function Inicial() {
         <TouchableOpacity style={styles.button} onPress={BtnCadastro}>
           <Text style={styles.buttonText}>Cadastre-se</Text>
         </TouchableOpacity>
-        <Text style={styles.titulo3}>Já possui conta? <Text>Entrar</Text></Text>
+        <TouchableOpacity onPress={navigateToLogin}>
+          <Text style={styles.titulo3}>Já possui conta? <Text style={styles.link}>Entrar</Text></Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -39,7 +48,7 @@ const styles = StyleSheet.create({
   logo: {
     position: 'absolute',
     top: '50%',
-    transform: [{ translateY: -250 }], // Ajuste conforme necessário
+    transform: [{ translateY: -250 }], 
     width: 250,
     height: 250,
     resizeMode: 'contain',
@@ -67,15 +76,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     marginBottom: 10,
+    fontFamily: 'Poppins_400Regular',
   },
   titulo2: {
     fontWeight: 'bold',
     fontSize: 24,
     marginBottom: 20,
+    fontFamily: 'Poppins_400Regular',
   },
   titulo3: {
     fontSize: 18,
     marginTop: 20,
+    fontFamily: 'Poppins_100Thin'
   },
   link: {
     color: '#7E57C2',
@@ -92,5 +104,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     textAlign: 'center',
+    fontFamily: 'Poppins_400Regular',
   },
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { useRouter } from 'expo-router';
+import { AntDesign } from '@expo/vector-icons';
 
 import image1 from '../imgs/slider1.png';
 import image2 from '../imgs/slider2.png';
@@ -14,8 +15,17 @@ export default function Home() {
         router.push('./adote'); 
     };
 
+    const handleFavoritesPress = () => {
+        router.push('../stacks/favoritos');
+    };
+
     return (
         <View style={styles.container}>
+            <View style={styles.topContainer}>
+                <TouchableOpacity style={styles.favoritesButton} onPress={handleFavoritesPress}>
+                    <AntDesign name="hearto" size={30} color="#fff" marginTop={35}/>
+                </TouchableOpacity>
+            </View>
             <Swiper
                 style={styles.wrapper}
                 showsPagination={false}
@@ -44,6 +54,18 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    topContainer: {
+        width: '100%',
+        height: 100,
+        backgroundColor: '#593C9D',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        paddingHorizontal: 20,
+    },
+    favoritesButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     wrapper: {},
     slide: {
         flex: 1,
@@ -54,7 +76,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: '80%',
+        height: '130%',
         resizeMode: 'cover',
     },
     button: {
@@ -63,7 +85,7 @@ const styles = StyleSheet.create({
         padding: 5,
         borderRadius: 5,
         right: 220,
-        top: 170,
+        top: 110,
     },
     buttonText: {
         color: '#fff',

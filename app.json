@@ -5,11 +5,11 @@
     "slug": "PetHealth",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/splash.png",
+    "icon": "./src/app/imgs/splash.png",
     "userInterfaceStyle": "light",
     "scheme": "PetHealth",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/app/imgs/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#fff"
     },
@@ -18,16 +18,16 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/splash.png",
+        "foregroundImage": "./src/app/imgs/splash.png",
         "backgroundColor": "#fff"
       }
     },
     "web": {
-      "favicon": "./src/assets/splash.png"
+      "favicon": "./src/app/imgs/splash.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ]
   }
 }
-

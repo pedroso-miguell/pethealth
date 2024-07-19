@@ -1,8 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useFonts, Poppins_400Regular, Poppins_100Thin, Poppins_600SemiBold_Italic } from '@expo-google-fonts/poppins'
 
 export default function Inicial() {
+  const [fontLoaded] = useFonts({
+    Poppins_100Thin,
+    Poppins_600SemiBold_Italic,
+    Poppins_400Regular,
+  });
+
   const router = useRouter();
 
   function BtnCadastro() {
@@ -69,15 +76,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     marginBottom: 10,
+    fontFamily: 'Poppins_400Regular',
   },
   titulo2: {
     fontWeight: 'bold',
     fontSize: 24,
     marginBottom: 20,
+    fontFamily: 'Poppins_400Regular',
   },
   titulo3: {
     fontSize: 18,
     marginTop: 20,
+    fontFamily: 'Poppins_100Thin'
   },
   link: {
     color: '#7E57C2',
@@ -94,5 +104,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     textAlign: 'center',
+    fontFamily: 'Poppins_400Regular',
   },
 });

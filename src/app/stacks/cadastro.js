@@ -11,8 +11,15 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import { useFonts, Poppins_400Regular, Poppins_100Thin, Poppins_600SemiBold_Italic } from '@expo-google-fonts/poppins'
 
 export default function Cadastro() {
+
+const [fontLoaded] = useFonts({
+  Poppins_100Thin,
+  Poppins_600SemiBold_Italic,
+});
+
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -194,6 +201,7 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 18,
     marginLeft: 10,
+    fontFamily: 'Poppins_100Thin',
   },
 
   logogoogle: {
